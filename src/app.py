@@ -33,26 +33,22 @@ def get_all_member():
     response_body = {
         "family": members
     }
+    return jsonify(response_body), 200
 
 @app.route('/members/<int:position>', methods=['DELETE'])
-def borrar_member(id_position):
-    task.pop(id_members)
-    # body = json.loads(request.data)
-    # # this is how you can use the Family datastructure by calling its methods
-    # members = jackson_family.remove_members()
-    response_body = {
+def borrar_member(id):
+    members = jackson_family.delete_members(member_id)
+    return jsonify({"done":True}), 200
+response_body = {
         "family": members
     }
-    return jsonify(id_members)
 
 @app.route('/members', methods=['POST'])
-def crear_member():
+def crear_member_nuevo():
 
-    request.get_json(force=True)
-    
-    request_body = request.json
-    _members.append( request_body)
-    return jsonify(_members)
+    nuevo_member = request.get_json()
+    jackson_family_members.append( _nuevo)
+    return jsonify()
 
     # body = json.loads(request.data)
     # # this is how you can use the Family datastructure by calling its methods
